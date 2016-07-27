@@ -1,0 +1,88 @@
+%*****************************************************************
+% Sriram Ganapathy
+% Center of Language and Speech Processing 
+% Johns Hopkins University
+% ganapathy@jhu.edu
+%*****************************************************************
+% 11-Jan-2012
+% See the file COPYING for the licence associated with this software.
+******************************************************************
+Ref:
+S. Ganapathy, S. Thomas and H. Hermansky, "Temporal envelope compensation for robust phoneme recognition using modulation spectrum ", Journal of Acoustical Society of America, Dec. 2010.
+S. Thomas, S. Ganapathy and H. Hermansky, "Recognition Of Reverberant Speech Using Frequency Domain Linear Prediction", IEEE Signal Processing Letters, Dec 2008.
+S. Ganapathy, S. Thomas and H. Hermansky, "Feature Extraction Using 2-D Autoregressive Models For Speaker Recognition", IEEE Speaker Odyssey, Jun. 2012.
+******************************************************************
+DESCRIPTION
+
+The FOLDER CONTAINS MATLAB FUNCTIONS FOR FEATURE EXTRACTION USING FREQUENCY DOMAIN LINEAR PREDICTION (FDLP). THE VARIOUS EXTRACTION SCHEMES ARE
+1. FDLP BASED SPECTRAL FEATURE EXTRACTION (FDLP-S) - SHORT-TERM FEATURES SIMILAR TO MFCC
+2. FDLP BASED MODULATION FEATURE EXTRACTION (FDLP-M) - LONG-TERM MODULATION FEATURES
+3. FDLP + PLP FOR 2-D AUTO-REGRESSIVE MODELLING (FDLP_PLP2) - SHORT-TERM FEATURES SIMILAR TO PLP 
+
+FOR USING ALL THE FUNCTIONALITIES IN FDLP-M, PLEASE DOWNLOAD AND COMPILE ADAPTIVE COMPRESSION  LOOP MEX IMPLEMENTATION FROM http://medi.uni-oldenburg.de/download/demo/adaption-loops/adapt_loop.zip 
+
+THE ADAPT_M MEX FILE MUST BE PLACED IN THE CURRENT DIRECTORY.
+*******************************************************************
+USAGE
+
+IN MATLAB: 
+FEAT = FDLP_FEAT(SAMPLES,CONFIG_FILE)
+
+THE DESCRIPTION OF THE CONFIG FILE ENTRIES IS PROVIDED AT THE BOTTOM OF THIS README. 
+*******************************************************************
+EXAMPLE
+
+IN MATLAB
+fid = fopen ('fcjf0_sx37.raw', 'rb','l');
+[x,cnt] = fread(fid,inf,'int16');
+fclose (fid);
+
+feats = fdlp_feat(x,'matlab.config');
+*******************************************************************
+ACKNOWLEDGEMENTS
+
+SOME OF THE FUNCTIONS IN THIS IMPLEMENTATION MODIFY THE ORIGINAL IMPLMENTATION OF PLP FEATURES FROM DAN ELLIS.
+http://labrosa.ee.columbia.edu/matlab/rastamat/
+THE INITIAL IMPLEMENTATION OF THE FDLP TECHNIQUE CAME FROM MARIOS ATHINEOS
+http://www.ee.columbia.edu/~marios/
+******************************************************************
+COPYRIGHT
+
+Read the file COPYING for copyrights.
+*******************************************************************
+
+Decription of the configuration parameters
+
+
+% Signal Parameters
+SAMPLE_RATE             % Sampling Rate
+FDLP_LEN                % FDLP frame length in seconds (1 second)
+FLAG_FULL_SIG           % Using the entire signal in one frame length (useful for short speech files of 2-3s)
+
+% Type of Feature
+FEAT_TYPE               % Type of features (fdlps=1/fdlpm=2/fdlp_plp2=3)
+AXIS	                % Frequency Axis   (bark=1/mel=2/linear=3)
+MEL_WARP 	        % Applies only for converting linear to mel-scale  
+DCT_LOW	                % Begin of Frequency Axis in DCT domain
+DCT_HIGH	        % End of Frequency Axis in DCT domain
+SKIP_BANDS 	        % Skip the initial bands in feature computation
+
+% Feature configuration
+FLAG_GAIN_NORM          % Gain normalization 
+MODEL_ORDER             % Model order per sub-band per second
+FLAG_LP_TYPE            % Type of linear prediction (autocorr=1/ls=2)
+FLAG_WIENER             % Apply Wiener filtering in feature
+
+% Modulation feature configuration
+TEMP_CEPS 	        % Number of modulation components per band  
+FLAG_ADAPT              % Including static and adaptive compression
+                        % Requires mex file adapt_m
+
+% Spectral feature parameters
+SPEC_CEPS	        % Number of cepstral components
+FLAG_C0                 % Flag set to 1 for using C1-C13
+SPEC_FR_LEN             % Frame length for spectral frame (ms)
+SPEC_FR_SHIFT           % Frame shift for spectral fram (ms)   
+FLAG_DELTA  	        % Apply Delta and Acceleration 
+*******************************************************
+

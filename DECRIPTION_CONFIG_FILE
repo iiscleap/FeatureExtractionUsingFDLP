@@ -1,0 +1,33 @@
+Decription of the configuration parameters
+
+% Signal Parameters
+SAMPLE_RATE             % Sampling Rate
+FDLP_LEN                % FDLP frame length in seconds (1 second)
+FLAG_FULL_SIG           % Using the entire signal in one frame length (useful for short speech files of 2-3s)
+
+% Type of Feature
+FEAT_TYPE               % Type of features (fdlps=1/fdlpm=2/fdlp_plp2=3)
+AXIS                    % Frequency Axis   (bark=1/mel=2/linear=3)
+MEL_WARP                % Applies only for converting linear to mel-scale
+DCT_LOW                 % Begin of Frequency Axis in DCT domain
+DCT_HIGH                % End of Frequency Axis in DCT domain
+SKIP_BANDS              % Skip the initial bands in feature computation
+
+% Feature configuration
+FLAG_GAIN_NORM          % Gain normalization
+MODEL_ORDER             % Model order per sub-band per second
+FLAG_LP_TYPE            % Type of linear prediction (autocorr=1/ls=2)
+FLAG_WIENER             % Apply Wiener filtering in feature
+
+% Modulation feature configuration
+TEMP_CEPS               % Number of modulation components per band
+FLAG_ADAPT              % Including static and adaptive compression
+                        % Requires mex file adapt_m
+
+% Spectral feature parameters
+SPEC_CEPST              % Number of cepstral components
+FLAG_C0                 % Flag set to 1 for using C1-C13
+SPEC_FR_LEN             % Frame length for spectral frame (ms)
+SPEC_FR_SHIFT           % Frame shift for spectral fram (ms)
+FLAG_DELTA              % Apply Delta and Acceleration
+

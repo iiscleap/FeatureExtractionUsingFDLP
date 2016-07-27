@@ -1,0 +1,10 @@
+SAMPLE_RATE      =  16000
+
+FLAG_FEAT_TYPE   =  1
+FLAG_DELTA       =  1
+
+FLAG_GAIN_NORM   =  0
+FLAG_AXIS        =  2
+
+FLAG_DCT_HIGH    =  8000 
+FLAG_FULLSIGLEN	 =  1

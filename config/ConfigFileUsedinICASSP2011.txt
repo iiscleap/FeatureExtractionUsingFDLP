@@ -1,0 +1,26 @@
+SAMPLE_RATE      =  8000
+
+FLAG_FEAT_TYPE   =  1         
+
+FLAG_GAIN_NORM   =  1
+FLAG_AXIS        =  3
+LP_TYPE		 =  1
+FLAG_WIENER	 =  0
+
+FLAG_FULLSIGLEN	 =  0
+FDLPLEN 	 =  10
+MODEL_ORDER	 =  33
+
+TEMP_CEPS	 =  14
+FLAG_ADAPT	 =  1
+
+FLAG_C0		 =  1
+SPEC_CEPS	 =  13
+SPEC_FR_LEN	 =  25
+SPEC_FR_SHIFT    =  10
+FLAG_DELTA       =  1
+
+DCT_LOW 	 =  125
+DCT_HIGH	 =  3700
+MEL_WARP	 =  1
+SKIP_BANDS	 =  0
